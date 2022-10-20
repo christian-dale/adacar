@@ -1,4 +1,4 @@
-with "../Ada_Drivers_Library/boards/MicroBit_v2/microbit_v2_zfp.gpr";
+with "../../Ada_Drivers_Library/boards/MicroBit_v2/microbit_v2_zfp.gpr";
 
 project Motor_drive_four_wheels is
 
