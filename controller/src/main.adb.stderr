@@ -1,0 +1,8 @@
+main.adb:1:06: error: file "lsm303agr.ads" not found
+main.adb:2:06: error: file "microbit.ads" not found
+main.adb:3:06: error: file "microbit.ads" not found
+main.adb:4:06: error: file "microbit.ads" not found
+main.adb:5:06: error: file "microbit.ads" not found
+main.adb:6:06: error: file "microbit.ads" not found
+main.adb:7:06: error: file "hal.ads" not found
+main.adb:9:06: error: file "nrf.ads" not found
