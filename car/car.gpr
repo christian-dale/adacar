@@ -1,6 +1,6 @@
 with "../../Ada_Drivers_Library/boards/MicroBit_v2/microbit_v2_zfp.gpr";
 
-project Motor_drive_four_wheels is
+project Car is
 
   for Runtime ("ada") use "zfp-cortex-m4f";
   for Target use "arm-eabi";
@@ -22,4 +22,4 @@ project Motor_drive_four_wheels is
      for Connection_Tool use "pyocd";
   end Ide;
 
-end Motor_drive_four_wheels;
+end Car;

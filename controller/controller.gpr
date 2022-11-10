@@ -1,6 +1,6 @@
 with "..\..\Ada_Drivers_Library\boards\MicroBit_v2\microbit_v2_full.gpr";
 
-project Motor_drive_four_wheels is
+project Controller is
 
    for Source_Dirs use ("src");
    for Object_Dir use "obj";
@@ -14,5 +14,5 @@ project Motor_drive_four_wheels is
       for Communication_Protocol use "remote";
    end Ide;
 
-end Motor_drive_four_wheels;
+end Controller;
 
