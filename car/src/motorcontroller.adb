@@ -22,8 +22,8 @@ package body motorcontroller is
       MicroBit.IOs.Set(14, Forward); --IN3
       MicroBit.IOs.Set(15, not Forward); --IN4
    
-      MicroBit.IOs.Write (0, Speed); --left speed control ENA ENB ;  right cabels   
-      MicroBit.IOs.Write (1, Speed); --right speed control ENA ENB;   left cables 
+      MicroBit.IOs.Write (8, Speed); --left speed control ENA ENB ;  right cabels   
+      MicroBit.IOs.Write (9, Speed); --right speed control ENA ENB;   left cables 
    end Moveforward;
    
    procedure MoveBackward (Speed :  MicroBit.IOs.Analog_Value) is
@@ -84,5 +84,12 @@ package body motorcontroller is
       MicroBit.IOs.Set(2, not Forward); --IN3
       MicroBit.IOs.Set(3, Forward); --IN4
    end Strafe;
+   
+   procedure Stop is
+      Speed : constant MicroBit.IOs.Analog_Value := 0;
+   begin
+      MicroBit.IOs.Write (8, Speed); --left speed control ENA ENB ;  right cabels   
+      MicroBit.IOs.Write (9, Speed); --right speed control ENA ENB;   left cables       
+   end Stop;
 
 end motorcontroller;

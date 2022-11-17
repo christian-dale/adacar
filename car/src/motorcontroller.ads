@@ -16,4 +16,6 @@ package MotorController is
 
    procedure Strafe;
 
+   procedure Stop;
+
 end MotorController;

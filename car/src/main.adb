@@ -36,18 +36,22 @@ begin
          RXdata := Radio.Receive;
          Put_Line(UInt8'Image(RXdata.Payload(1)));
          
-         if RXdata.Payload(1)= 0 then
-            MotorController.MoveForward(Speed); -- If we agree at that 0 = stop we change the statment
-         elsif RXdata.Payload(1) = 1 then 
-            MotorController.MoveForward(Speed_2);
-         elsif RXdata.Payload(1) = 2 then 
-            MotorController.Spin_Left; 
-         elsif RXdata.Payload(1) = 3 then 
-            MotorController.Spin_Right;
-         elsif RXdata.Payload(1) = 4 then 
-            MotorController.MoveBackward(Speed);
-         elsif RXdata.Payload(1) = 5 then 
-            MotorController.MoveBackward(Speed_2);
+         if RXdata.Payload(2) = 0 then
+            if RXdata.Payload(1) = 0 then
+               MotorController.MoveForward(Speed); -- If we agree at that 0 = stop we change the statment
+            elsif RXdata.Payload(1) = 1 then 
+               MotorController.MoveForward(Speed_2);
+            elsif RXdata.Payload(1) = 2 then 
+               MotorController.Spin_Left; 
+            elsif RXdata.Payload(1) = 3 then 
+               MotorController.Spin_Right;
+            elsif RXdata.Payload(1) = 4 then 
+               MotorController.MoveBackward(Speed);
+            elsif RXdata.Payload(1) = 5 then 
+               MotorController.MoveBackward(Speed_2);
+            end if;         
+         else
+            MotorController.Stop;
          end if;
       end loop;
       null;
