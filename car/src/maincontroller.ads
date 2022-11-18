@@ -1,8 +1,7 @@
 package MainController is
-
-   type Directions is (Forward, Stop);
    
-   task SenseAccelerometer with Priority => 1;
+   task RadioReceive with Priority => 1;
    
-   task SenseStop with Priority => 2;
+   task SenseDrive with Priority => 1;
+   
 end MainController;

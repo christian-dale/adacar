@@ -6,7 +6,7 @@ with HAL; use HAL;
 with MicroBit.Console; use MicroBit.Console;
 use MicroBit;
 
-procedure Main with Priority => 0 is   
+procedure Main with Priority => 0 is
    RXdata : Radio.RadioData;
    TxData : Radio.RadioData;
 
