@@ -8,9 +8,6 @@ use MicroBit;
 with MotorController;
 
 package body MainController is
-
-   Payload_Accelerometer : UInt8 := 0;
-   Payload_Stop : Uint8 := 0;   
    
    task body RadioReceive is
       myClock : Time;
@@ -22,8 +19,8 @@ package body MainController is
          while Radio.DataReady loop
             RXdata := Radio.Receive;
             
-            Payload_Accelerometer := RXdata.Payload(1);
-            Payload_Stop := RXdata.Payload(2);
+            PayloadDriver.SetPayloadAccelerometer(RXdata.Payload(1));
+            PayloadDriver.SetPayloadStop(RXdata.Payload(2));
          end loop;         
          
          delay until myClock + Milliseconds(100);
@@ -38,18 +35,18 @@ package body MainController is
       loop
          myClock := Clock;
 
-         if Payload_Stop = 0 then
-             if Payload_Accelerometer = 0 then
+         if PayloadDriver.GetPayloadStop = 0 then
+             if PayloadDriver.GetPayloadAccelerometer = 0 then
                  MotorController.MoveForward(Speed); -- If we agree at that 0 = stop we change the statment
-             elsif Payload_Accelerometer = 1 then 
+             elsif PayloadDriver.GetPayloadAccelerometer = 1 then 
                  MotorController.MoveForward(Speed_2);
-             elsif Payload_Accelerometer = 2 then 
+             elsif PayloadDriver.GetPayloadAccelerometer = 2 then 
                  MotorController.Spin_Left; 
-             elsif Payload_Accelerometer = 3 then 
+             elsif PayloadDriver.GetPayloadAccelerometer = 3 then 
                  MotorController.Spin_Right;
-             elsif Payload_Accelerometer = 4 then 
+             elsif PayloadDriver.GetPayloadAccelerometer = 4 then 
                  MotorController.MoveBackward(Speed);
-             elsif Payload_Accelerometer = 5 then 
+             elsif PayloadDriver.GetPayloadAccelerometer = 5 then 
                  MotorController.MoveBackward(Speed_2);
              end if;         
          else
@@ -58,5 +55,28 @@ package body MainController is
          
          delay until myClock + Milliseconds(100);
       end loop;
-   end SendeDrive;
+   end SenseDrive;
+   
+   protected body PayloadDriver is
+      function GetPayloadAccelerometer return UInt8 is
+      begin
+         return Payload_Accelerometer;
+      end GetPayloadAccelerometer;
+
+      procedure SetPayloadAccelerometer (A : UInt8) is
+      begin
+         Payload_Accelerometer := A;
+      end SetPayloadAccelerometer;
+
+      function GetPayloadStop return UInt8 is
+      begin
+         return Payload_Stop;
+      end;
+
+      procedure SetPayloadStop (S : UInt8) is
+      begin
+         Payload_Stop := S;
+      end;
+   end PayloadDriver;
+   
 end MainController;
